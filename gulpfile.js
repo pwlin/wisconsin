@@ -15,6 +15,9 @@ var paths = {
     './node_modules/jquery_lazyload/jquery.lazyload.js',
     './node_modules/fries/dist/fries.js',
     './node_modules/fingerblast/dist/fingerblast.js',
+    './src/scripts/stores/localStore.js',
+    './src/scripts/stores/sessionStore.js',
+    './src/scripts/stores/db.js',
     './src/scripts/wisconsin/index.js'
   ],
 
