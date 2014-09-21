@@ -1,5 +1,6 @@
 node_modules
-www/*
+www
+platforms/android/assets
 platforms/android/ant.properties
 platforms/android/local.properties
 platforms/android/ant-build
