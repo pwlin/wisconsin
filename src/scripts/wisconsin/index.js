@@ -104,7 +104,7 @@ wisconsin.index.exitApp = function () {
 };
 
 wisconsin.index.fetchApkConfirmation = function (apk) {
-    wisconsin.ui.dialog.confirm('Do You Want To Install ' + apk.title + ' (v. ' + apk.version + ')', function (buttonIndex) {
+    wisconsin.ui.dialog.confirm('Do You Want To Install ' + apk.title + ' (v. ' + apk.version + ')?', function (buttonIndex) {
         if (buttonIndex === 1) {
             wisconsin.index.fetchApk(apk);
         }
