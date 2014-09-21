@@ -1,4 +1,4 @@
-/*jslint browser: true, devel: true, node: true, sloppy: true*/
+/*jslint browser: true, devel: true, node: true, sloppy: true, plusplus: true*/
 /**
  * A wrapper around HTML5's localStorage object
  * @constructor

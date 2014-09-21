@@ -7,20 +7,23 @@ var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var minifyHTML = require('gulp-minify-html');
 var fileInclude = require('gulp-file-include');
-//var sourcemaps = require('gulp-sourcemaps');
+var replace = require('gulp-replace');
 var del = require('del');
 
 var paths = {
 
     scripts: [
-		'./node_modules/jquery/dist/jquery.js',
+        './node_modules/jquery/dist/jquery.js',
         './node_modules/jquery_lazyload/jquery.lazyload.js',
         './node_modules/fries/dist/fries.js',
-        './node_modules/fingerblast/dist/fingerblast.js',
         './src/scripts/stores/localStore.js',
         './src/scripts/stores/sessionStore.js',
         './src/scripts/stores/db.js',
-        './src/scripts/wisconsin/index.js'
+        './src/scripts/wisconsin/utils.js',
+        './src/scripts/wisconsin/ui.js',
+        './src/scripts/wisconsin/index.js',
+        './src/scripts/wisconsin/repo.js'
+
     ],
 
     styles: [
@@ -33,67 +36,55 @@ var paths = {
     ],
 
     html: [
-        './src/html/index.html'
+        './src/html/*.html'
     ],
 
     htmlPartials: [
-        './src/html/partials/*.html'
+        './src/html-partials/*.html'
     ]
 
 };
 
-gulp.task('clean-scripts', function (cb) {
-    del(['./www/files/scripts'], cb);
+gulp.task('scripts', [], function () {
+    del(['./www/files/scripts'], function () {
+        gulp.src(paths.scripts)
+            .pipe(concat('js.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('./www/files/scripts'));
+    });
 });
 
-gulp.task('clean-styles', function (cb) {
-    del(['./www/files/styles/halo-dark'], cb);
+gulp.task('styles', [], function () {
+    del(['./www/files/styles/halo-dark'], function () {
+        gulp.src(paths.styles)
+            .pipe(concat('css.css'))
+            .pipe(less())
+            .pipe(minifyCSS({
+                keepSpecialComments: 0
+            }))
+            .pipe(gulp.dest('./www/files/styles/halo-dark'));
+    });
 });
 
-gulp.task('clean-fonts', function (cb) {
-    del(['./public/files/fonts'], cb);
+gulp.task('fonts', [], function () {
+    del(['./public/files/fonts'], function () {
+        gulp.src(paths.fonts)
+            .pipe(gulp.dest('./www/files/fonts'));
+    });
 });
 
-gulp.task('clean-html', function (cb) {
-    del(['./www/*.html'], cb);
-});
-
-gulp.task('scripts', ['clean-scripts'], function () {
-    return gulp.src(paths.scripts)
-        //.pipe(sourcemaps.init())
-        .pipe(concat('js.js'))
-        .pipe(uglify())
-        //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./www/files/scripts'));
-});
-
-gulp.task('styles', ['clean-styles'], function () {
-    return gulp.src(paths.styles)
-        //.pipe(sourcemaps.init())
-        .pipe(concat('css.css'))
-        .pipe(less())
-        .pipe(minifyCSS({
-            keepSpecialComments: 0
-        }))
-        //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./www/files/styles/halo-dark'));
-});
-
-gulp.task('fonts', ['clean-fonts'], function () {
-    return gulp.src(paths.fonts)
-        .pipe(gulp.dest('./www/files/fonts'));
-});
-
-gulp.task('html', ['clean-html'], function () {
-    return gulp.src(paths.html)
-        //.pipe(concat('index.html'))
-        .pipe(fileInclude())
-        .pipe(minifyHTML({
-            empty: true,
-            spare: true,
-            quotes: true
-        }))
-        .pipe(gulp.dest('./www'));
+gulp.task('html', [], function () {
+    del(['./www/*.html'], function () {
+        gulp.src(paths.html)
+            .pipe(fileInclude())
+            .pipe(minifyHTML({
+                empty: true,
+                spare: true,
+                quotes: true
+            }))
+            .pipe(replace(/\r\n|\n/g, ''))
+            .pipe(gulp.dest('./www'));
+    });
 });
 
 gulp.task('watch', function () {

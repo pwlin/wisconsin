@@ -1,5 +1,5 @@
 node_modules
-project.*
+platforms/android/ant.properties
 platforms/android/local.properties
 platforms/android/ant-build
 platforms/android/ant-gen
