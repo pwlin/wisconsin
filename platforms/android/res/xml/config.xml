@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.github.pwlin.wisconsin" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.github.pwlin.wisconsin" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <preference name="AndroidLaunchMode" value="singleTop" />
     <feature name="App">
@@ -24,6 +24,7 @@
     <icon density="ldpi" src="src/res/icons/app_icon_ldpi_36.png" />
     <icon density="mdpi" src="src/res/icons/app_icon_mdpi_48.png" />
     <icon density="hdpi" src="src/res/icons/app_icon_hdpi_72.png" />
+    <icon density="xhdpi" src="src/res/icons/app_icon_xhdpi_96.png" />
     <name>Wisconsin</name>
     <description>
         A Very Simple Android App Repository For Raccoon
@@ -33,7 +34,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <icon density="xhdpi" src="src/res/icons/app_icon_xhdpi_96.png" />
+    <icon src="src/res/icons/app_icon_xhdpi_48.png" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="BackgroundColor" value="#000000" />
