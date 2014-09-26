@@ -13,10 +13,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" onload=\"true\" value=\"org.apache.cordova.statusbar.StatusBar\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
                             "count": 1
                         },
@@ -49,12 +45,6 @@
     },
     "installed_plugins": {
         "io.github.pwlin.cordova.plugins.fileopener2": {
-            "PACKAGE_NAME": "io.github.pwlin.wisconsin"
-        },
-        "org.apache.cordova.console": {
-            "PACKAGE_NAME": "io.github.pwlin.wisconsin"
-        },
-        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "io.github.pwlin.wisconsin"
         },
         "org.apache.cordova.dialogs": {
