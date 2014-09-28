@@ -1,5 +1,5 @@
 /*jslint browser: true, devel: true, node: true, sloppy: true, plusplus: true*/
-/*global wisconsin, $, localStore, FileTransfer */
+/*global wisconsin, $, localStore, FileTransfer, cordova */
 
 window.wisconsin = window.wisconsin || {};
 
@@ -21,26 +21,24 @@ wisconsin.repo.addUrl = function () {
         repoUrl = $.trim(String(repoUrl.replace(/index\.xml$/i, '').replace(/\/$/ig, '')));
         repoUrl = repoUrl + '/index.xml';
         localStore.set('repoUrl', repoUrl.replace(/index\.xml$/i, '').replace(/\/$/ig, ''));
-        $('#addRepoUrlForm').hide();
-        $('#addRepoUrlLoading header.dialog-title-region .title').html('Please Wait ...');
-        $('#addRepoUrlLoading div.dialog-content div.inset p').html('Fetching ' + repoUrl);
-        $('#addRepoUrlLoading').show();
+        cordova.plugins.pDialog.init({
+            title: 'Please Wait ...',
+            message: 'Fetching ' + repoUrl,
+            progressStyle: 'HORIZONTAL',
+            cancelable: false
+        }).setProgress(0);
         wisconsin.repo.fetchIndex(function () {
-            $('#addRepoUrlLoading header.dialog-title-region .title').html('100% Completed');
-            $('#addRepoUrlLoading div.dialog-content div.inset p').html('Successfully Fetched index.xml File.');
+            cordova.plugins.pDialog.setTitle('100% Completed').setMessage('Successfully Fetched index.xml File.');
             setTimeout(function () {
+                cordova.plugins.pDialog.dismiss();
                 document.location.replace(wisconsin.index.pageUri);
             }, 500);
         }, function (error) {
             localStore.remove('repoUrl');
-            wisconsin.ui.dialog.alert('There was an Error. Please try again.', function () {
-                $('#addRepoUrlLoading').hide();
-                $('#addRepoUrlLoading header.dialog-title-region .title').html('');
-                $('#addRepoUrlLoading div.dialog-content div.inset p').html('');
-                $('#addRepoUrlForm').show();
-            }, 'Error', 'Close');
+            cordova.plugins.pDialog.dismiss();
+            wisconsin.ui.dialog.alert('There was an Error. Please try again.', function () {}, 'Error', 'Close');
         }, function (progressEvent) {
-            $('#addRepoUrlLoading header.dialog-title-region .title').html(Math.floor((progressEvent.loaded / progressEvent.total) * 100) + '% Please Wait ...');
+            cordova.plugins.pDialog.setProgress(Math.floor((progressEvent.loaded / progressEvent.total) * 100));
         });
     }
 };

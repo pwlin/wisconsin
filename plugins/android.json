@@ -9,15 +9,19 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"FileOpener2\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.fileopener2.FileOpener2\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "xml": "<feature name=\"PDialog\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.pdialog.PDialog\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
                             "count": 1
                         },
                         {
@@ -31,12 +35,12 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-                            "count": 1
-                        },
-                        {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -44,13 +48,16 @@
         }
     },
     "installed_plugins": {
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "io.github.pwlin.wisconsin"
+        },
         "io.github.pwlin.cordova.plugins.fileopener2": {
             "PACKAGE_NAME": "io.github.pwlin.wisconsin"
         },
-        "org.apache.cordova.dialogs": {
+        "io.github.pwlin.cordova.plugins.pdialog": {
             "PACKAGE_NAME": "io.github.pwlin.wisconsin"
         },
-        "org.apache.cordova.file": {
+        "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "io.github.pwlin.wisconsin"
         },
         "org.apache.cordova.file-transfer": {

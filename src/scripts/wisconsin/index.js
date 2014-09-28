@@ -12,6 +12,7 @@ wisconsin.index.localXMLUri = 'cdvfile://localhost/persistent/wisconsin/index.xm
 wisconsin.index.init = function () {
     if (!localStore.get('repoUrl')) {
         document.location.replace(wisconsin.repo.pageUri);
+        return true;
     }
     $.ajax({
         url: wisconsin.index.localXMLUri,
@@ -62,38 +63,24 @@ wisconsin.index.list = function (indexXML) {
 };
 
 wisconsin.index.refresh = function () {
-    $('#button-refresh').hide();
-    $('#content-main').hide();
-    $('#content-loading header.dialog-title-region .title').html('Please Wait ...');
-    $('#content-loading div.dialog-content div.inset p').html('Fetching ' + localStore.get('repoUrl') + '/index.xml');
-    $('#content-loading').show();
+    cordova.plugins.pDialog.init({
+        title: 'Please Wait ...',
+        message: 'Fetching ' + localStore.get('repoUrl') + '/index.xml',
+        progressStyle: 'HORIZONTAL',
+        cancelable: false
+    }).setProgress(0);
+
     wisconsin.repo.fetchIndex(function () {
-        $('#content-loading header.dialog-title-region .title').html('100% Completed');
-        $('#content-loading div.dialog-content div.inset p').html('Successfully Fetched index.xml File.');
+        cordova.plugins.pDialog.setTitle('100% Completed').setMessage('Successfully Fetched index.xml File.');
         setTimeout(function () {
-            $('#content-loading').hide();
-            $('#content-loading header.dialog-title-region .title').html('');
-            $('#content-loading div.dialog-content div.inset p').html('');
-            $('#content-main').show();
+            cordova.plugins.pDialog.dismiss();
             wisconsin.index.init();
         }, 1000);
-        setTimeout(function () {
-            $('#button-refresh').show();
-            $('#button-refresh').focus().blur();
-        }, 5000);
     }, function (error) {
-        wisconsin.ui.dialog.alert('There was an Error. Please try again.', function () {
-            $('#content-loading').hide();
-            $('#content-loading header.dialog-title-region .title').html('');
-            $('#content-loading div.dialog-content div.inset p').html('');
-            $('#content-main').show();
-        }, 'Error', 'Close');
-        setTimeout(function () {
-            $('#button-refresh').show();
-            $('#button-refresh').focus().blur();
-        }, 2000);
+        cordova.plugins.pDialog.dismiss();
+        wisconsin.ui.dialog.alert('There was an Error. Please try again.', function () {}, 'Error', 'Close');
     }, function (progressEvent) {
-        $('#content-loading header.dialog-title-region .title').html(Math.floor((progressEvent.loaded / progressEvent.total) * 100) + '% Please Wait ...');
+        cordova.plugins.pDialog.setProgress(Math.floor((progressEvent.loaded / progressEvent.total) * 100));
     });
 };
 
@@ -112,24 +99,30 @@ wisconsin.index.fetchApkConfirmation = function (apk) {
 };
 
 wisconsin.index.fetchApk = function (apk) {
-    var toast,
-        fileTransfer;
-    toast = new fries.Toast({
-        content: 'Downlading ' + apk.title + ' (v. ' + apk.version + ') ...',
-        duration: fries.Toast.duration.SHORT
-    });
+    var fileTransfer;
+    cordova.plugins.pDialog.init({
+        title: 'Please Wait ...',
+        message: 'Downlading ' + apk.title + ' (v. ' + apk.version + ')',
+        progressStyle: 'HORIZONTAL',
+        cancelable: false
+    }).setProgress(0);
+
     fileTransfer = new FileTransfer();
-    fileTransfer.onprogress = function () {};
+    fileTransfer.onprogress = function (progressEvent) {
+        cordova.plugins.pDialog.setProgress(Math.floor((progressEvent.loaded / progressEvent.total) * 100));
+    };
     fileTransfer.download(
         apk.downloadUri,
         apk.saveUri,
         function () {
+            cordova.plugins.pDialog.dismiss();
             cordova.plugins.fileOpener2.open(
                 apk.saveUri,
                 'application/vnd.android.package-archive'
             );
         },
         function (error) {
+            cordova.plugins.pDialog.dismiss();
             wisconsin.ui.dialog.alert('There was an Error While Installing ' + apk.title + ' (v. ' + apk.version + '). Please try again.', null, 'APK Installation', 'Close');
         },
         false

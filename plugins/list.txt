@@ -1,0 +1,5 @@
+io.github.pwlin.cordova.plugins.fileopener2 --> https://github.com/pwlin/cordova-plugin-file-opener2
+io.github.pwlin.cordova.plugins.pdialog --> https://github.com/pwlin/cordova-plugin-pdialog
+org.apache.cordova.dialogs --> https://github.com/apache/cordova-plugin-dialogs
+org.apache.cordova.file --> https://github.com/apache/cordova-plugin-file
+org.apache.cordova.file-transfer https://github.com/apache/cordova-plugin-file-transfer
