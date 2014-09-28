@@ -17,13 +17,12 @@ var paths = {
         './node_modules/jquery_lazyload/jquery.lazyload.js',
         './node_modules/fries/dist/fries.js',
         './src/scripts/stores/localStore.js',
-        './src/scripts/stores/sessionStore.js',
-        './src/scripts/stores/db.js',
+        /*'./src/scripts/stores/sessionStore.js',
+        './src/scripts/stores/db.js',*/
         './src/scripts/wisconsin/utils.js',
         './src/scripts/wisconsin/ui.js',
         './src/scripts/wisconsin/index.js',
         './src/scripts/wisconsin/repo.js'
-
     ],
 
     styles: [
