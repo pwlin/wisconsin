@@ -5,22 +5,40 @@
 
 <body>
     <div class="page">
-        <header class="action-bar fixed-top">
+        <header class="action-bar fixed-top action-bar-top">
             <a href="javascript: void(0);" class="app-icon action" data-ignore="true">
                 <i class="icon-wisconsin"></i>
             </a>
             <h1 class="title">Wisconsin</h1>
 
             <ul class="actions pull-right">
-                <li>
+                <!--<li>
                     <a id="button-refresh" href="javascript:wisconsin.index.refresh();" class="action" title="Refresh" data-ignore="true"><i class="icon-refresh"></i></a>
                 </li>
                 <li>
                     <a href="javascript:document.location.replace('./repo.html');" class="action" title="Settings" data-ignore="true"><i class="icon-settings"></i></a>
-                </li>
+                </li>-->
                 <!--<li>
                     <a href="javascript:wisconsin.index.exitApp();" class="action" title="Quit" data-ignore="true"><i class="icon-remove"></i></a>
-                </li>-->
+                </li>
+                -->
+                <li class="action-overflow">
+                    <a href="javascript:$('ol.action-overflow-list').toggleClass('active').toggle();" class="action action-overflow-icon toggle-spinner"><i></i></a>
+                    <ol reversed="reversed" class="action-overflow-list spinner" style="display: none;">
+                        <li class="spinner-item">
+                            <a href="javascript:wisconsin.index.refresh();" data-transition="null" data-timeout="null" data-ignore="true">Refresh</a>
+                        </li>
+                        <li class="spinner-item">
+                            <a href="javascript:document.location.href='./repo.html';" data-transition="null" data-timeout="null" data-ignore="true">Settings</a>
+                        </li>
+                        <li class="spinner-item">
+                            <a href="javascript:wisconsin.index.exitApp();" data-transition="null" data-timeout="null" data-ignore="true">Quit</a>
+                        </li>
+                    </ol>
+                </li>
+
+
+
             </ul>
 
 

@@ -15,7 +15,7 @@ var paths = {
     scripts: [
         './node_modules/jquery/dist/jquery.js',
         './node_modules/jquery_lazyload/jquery.lazyload.js',
-        './node_modules/fries/dist/fries.js',
+        /*'./node_modules/fries/dist/fries.js',*/
         './src/scripts/stores/localStore.js',
         /*'./src/scripts/stores/sessionStore.js',
         './src/scripts/stores/db.js',*/
@@ -27,6 +27,20 @@ var paths = {
 
     styles: [
         './node_modules/fries/dist/themes/holo-dark/holo-dark.min.css',
+        /*'./node_modules/fries/dist/css/holo-dark/action-bars.css',
+        './node_modules/fries/dist/css/holo-dark/animations.css',
+        './node_modules/fries/dist/css/holo-dark/base.css',
+        './node_modules/fries/dist/css/holo-dark/buttons.css',
+        './node_modules/fries/dist/css/holo-dark/content.css',
+        './node_modules/fries/dist/css/holo-dark/dialogs.css',
+        './node_modules/fries/dist/css/holo-dark/forms.css',
+        './node_modules/fries/dist/css/holo-dark/icomoon.css',
+        './node_modules/fries/dist/css/holo-dark/lists.css',
+        './node_modules/fries/dist/css/holo-dark/sliders.css',
+        './node_modules/fries/dist/css/holo-dark/spinners.css',
+        './node_modules/fries/dist/css/holo-dark/stack.css',
+        './node_modules/fries/dist/css/holo-dark/tabs.css',
+        './node_modules/fries/dist/css/holo-dark/toasts.css',*/
         './src/styles/basic.less'
     ],
 

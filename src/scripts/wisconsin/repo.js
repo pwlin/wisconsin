@@ -8,6 +8,7 @@ wisconsin.repo = {};
 wisconsin.repo.pageUri = './repo.html';
 
 wisconsin.repo.init = function () {
+    wisconsin.init();
     $('#repoUrl').val(localStore.get('repoUrl'));
 };
 
@@ -25,7 +26,8 @@ wisconsin.repo.addUrl = function () {
             title: 'Please Wait ...',
             message: 'Fetching ' + repoUrl,
             progressStyle: 'HORIZONTAL',
-            cancelable: false
+            cancelable: false,
+            theme: 'DEVICE_DARK'
         }).setProgress(0);
         wisconsin.repo.fetchIndex(function () {
             cordova.plugins.pDialog.setTitle('100% Completed').setMessage('Successfully Fetched index.xml File.');
