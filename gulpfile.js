@@ -16,6 +16,12 @@ var paths = {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/jquery_lazyload/jquery.lazyload.js',
         /*'./node_modules/fries/dist/fries.js',*/
+        './node_modules/fries/lib/js/dialog.js',
+        './node_modules/fries/lib/js/forms.js',
+        './node_modules/fries/lib/js/spinners.js',
+        './node_modules/fries/lib/js/stack.js',
+        './node_modules/fries/lib/js/tabs.js',
+        './node_modules/fries/lib/js/utils.js',
         './src/scripts/stores/localStore.js',
         /*'./src/scripts/stores/sessionStore.js',
         './src/scripts/stores/db.js',*/
