@@ -29,3 +29,11 @@ wisconsin.utils.forEach = function (obj, cb) {
         }
     }
 };
+
+wisconsin.utils.base64Encode = function (str) {
+    return btoa(str);
+};
+
+wisconsin.utils.base64Decode = function (str) {
+    return atob(str);
+};

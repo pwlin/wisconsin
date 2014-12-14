@@ -63,8 +63,8 @@ wisconsin.index.list = function (indexXML) {
                 downloadUri: localStore.get('repoUrl').replace(/index\.xml$/i, '').replace(/\/$/ig, '') + '/' + $('apkname', this).text(),
                 saveUri: wisconsin.index.localXMLUri.replace(/\/index\.xml$/i, '').replace(/\/$/ig, '') + '/data/' + (apkTitle).replace(/\W/g, '_') + '_' + $('version', this).text() + '.apk'
             };
-            apkData = JSON.stringify(apkData);
-            txt += '<li class="list-item-single-line selectable index-list"><a href=\'javascript:wisconsin.index.fetchApkConfirmation(' + apkData + ');\' data-ignore="true">';
+            apkData = wisconsin.utils.base64Encode(JSON.stringify(apkData));
+            txt += '<li class="list-item-single-line selectable index-list"><a href="javascript:wisconsin.index.fetchApkConfirmation(\'' + apkData + '\');" data-ignore="true">';
             txt += '<div class="index-list-container">';
             txt += '<div class="apk-icon"><img src="' + apkIcon + '" /></div><div class="apk-info"><h4 class="apk-title">' + apkTitle + '</h4><p class="apk-version">Version: ' + $('version', this).text() + ' [' + apkSize + ' MB]</p></div>';
             txt += '<div class="sep"></div>';
@@ -107,11 +107,13 @@ wisconsin.index.exitApp = function () {
 };
 
 wisconsin.index.fetchApkConfirmation = function (apk) {
+    apk = wisconsin.utils.base64Decode(apk);
+    apk = JSON.parse(apk);
     wisconsin.ui.dialog.confirm('Do You Want To Install ' + apk.title + ' (v. ' + apk.version + ') [' + apk.size + ' MB]?', function (buttonIndex) {
-        if (buttonIndex === 1) {
+        if (buttonIndex === 2) {
             wisconsin.index.fetchApk(apk);
         }
-    }, 'APK Installation', ['Install', 'Cancel']);
+    }, 'APK Installation', ['Cancel', 'Install']);
 };
 
 wisconsin.index.fetchApk = function (apk) {
